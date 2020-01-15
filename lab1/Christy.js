@@ -4,9 +4,9 @@ const Person = require("./Person.js");
 //creating a class that extends another
 class Christy extends Person {
 
-    constructor(name, color, age) {
+    constructor(name, favoriteColor, age) {
         //taking data from parent class
-        super(name, color);
+        super(name, favoriteColor);
         //instantiating new variable
         this.age = age;
     }

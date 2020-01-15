@@ -1,15 +1,20 @@
+//requiring chalk
+const chalk = require("chalk"); 
+
 //creating a class
 class Person {
     //passing in arguments
-    constructor(name, color) {
+    constructor(name, favoriteColor) {
         //instantiating variables
         this.name = name;
-        this.color = color; 
+        this.favoriteColor = favoriteColor;   
     }
+
     //creating function
     speak() {
-        console.log("hi!");
+        console.log(chalk.keyword(this.favoriteColor)(this.name));
     }
 }
-//exporting data
+    
+//exporting data 
 module.exports = Person; 
