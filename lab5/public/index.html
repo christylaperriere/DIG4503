@@ -1,0 +1,63 @@
+<html>
+  <body>
+    <script>
+      function readID(event) {
+        //prevent the default action the form takes
+        event.preventDefault(); 
+
+        //finding the pokemonID element
+        let element = document.querySelector("#pokemonID"); 
+        
+        fetch("/id/" + element.value).then(
+          (Response) => {
+            return Response.json(); 
+          }).then((processed) => {
+            let reporting = document.querySelector("#reportingArea"); 
+
+            if(processed.error) {
+              reporting.innerHTML = "That pokemon ID doesn't exist, try again!"; 
+            }
+            else {
+              reporting.innerHTML = processed.name;
+            }
+          }); 
+      }
+
+      function readName(event) {
+        event.preventDefault(); 
+
+        let element = document.querySelector("#pokemonName"); 
+        
+        fetch("/name/" + element.value).then(
+          (Response) => {
+            return Response.json(); 
+          }).then((processed) => {
+            let reporting = document.querySelector("#reportingArea"); 
+
+            if(processed.error) {
+              reporting.innerHTML = "That pokemon does not exist, try again!"; 
+            }
+            else {
+              reporting.innerHTML = processed.id; 
+
+            }
+          }); 
+      }
+    </script>
+      <h1 style=" font-family: 'Courier New', 'Courier', 'monospace'">Pokemon Locator</h1>
+      <form onsubmit="readID(event)"> 
+        <h3 style=" font-family: 'Courier New', 'Courier', 'monospace'">Pokemon ID:</h3>
+        <input type="text" id="pokemonID">
+         <button>Find Pokemon!</button>
+      </form>
+      <hr>
+      <form onsubmit="readName(event)"> 
+        <h3 style=" font-family: 'Courier New', 'Courier', 'monospace'">Pokemon Name:</h3>
+        <input type="text" id="pokemonName">
+         <button>Find Pokemon!</button>
+      </form>
+      <hr>
+      <h3 style=" font-family: 'Courier New', 'Courier', 'monospace'">Reporting Area:</h3>
+      <div id="reportingArea"></div>
+  </body>
+</html>
