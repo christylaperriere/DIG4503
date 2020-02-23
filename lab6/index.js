@@ -1,5 +1,10 @@
 // Requiring express
 const Express = require('express');
+const App = Express(); 
+// Requiring chalk
+const chalk = require('chalk'); 
+
+const port = 80; 
 
 // Requiring cors
 const cors = require('cors'); 
@@ -11,7 +16,7 @@ const chalk = require('chalk');
 
 // Requiring pokemon
 const getPokemon = require('json-pokemon'); 
-const database = JSON.parse(getPokemon); 
+const pokemons = require('json-pokemon/getPokemon'); 
 
 App.use('/', Express.static('client/build')); 
 
@@ -22,18 +27,19 @@ App.get('name/:name', function(req, res) {
   // Using the number to get the correct pokemon
   var requestedPokemon = getPokemon.getPokemonByName(pokeNameTyped); 
 
+  let result = {'Error': 'No pokemon was found'};
+
   // Determining validity
-  if (requestedPokemon == null) {
-    // Name is invalid 
-    res.send('No pokemon found'); 
-    console.log(chalk.red(req.path)); 
+  if (requestedPokemon != null) {
+    result = requestedPokemon;
+    console.log(chalk.green(req.path)); 
   }
 
   else {
-    // Name is valid 
-    res.send(requestedPokemon); 
-    console.log(chalk.green(req.path)); 
+    // Name is invalid 
+    console.log(chalk.red(req.path)); 
   }
+  res.json(result); 
 }); 
 
 // ID route 
@@ -43,21 +49,24 @@ App.get('/id/:id', function(req,res) {
   // Using number to get pokemon
   var requestedPokemon = getPokemon.getPokemonById(pokeID); 
 
+  // Check for error 
+  let result = {'Error': 'No pokemon was found'};
+
   // Determining validity
-  if(requestedPokemon == null) {
-    // ID is invalid
-    res.send('No pokemon found'); 
-    console.log(chalk.red(req.path)); 
+  if(requestedPokemon != null) {
+    result = requestedPokemon;
+    console.log(chalk.green(req.path)); 
   }
 
   else {
-    // ID is valid
-    res.send(requestedPokemon); 
-    console.log(chalk.green(req.path)); 
+    // ID is invalid
+    console.log(chalk.red(req.path)); 
   }
+  
+  res.json(result); 
  });
 
  // Listening on server
- App.listen(80, function() {
-   console.log('Server jogging!'); 
+ App.listen(port, () => {
+   console.log("server jogging!");
  });

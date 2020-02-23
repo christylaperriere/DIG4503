@@ -11,10 +11,8 @@ class IdSearch extends React.Component {
         // Find the element with 'id="id"'
 
         let element = document.querySelector("#id");
-        let requestId = element.value; 
 
-        fetch('http://localhost:80/id/' + requestId)
-        .then((res) => {
+        fetch('http://localhost:80/id/' + element.value).then((res) => {
             // Parse the string into a JavaScript object and return it
             return res.json();
         })
@@ -27,12 +25,9 @@ class IdSearch extends React.Component {
             if(processed.error) {
                 reporting.innerHTML = processed.error;
             } else {
-                reporting.innerHTML = "hello";
+                reporting.innerHTML = processed.name;
             }
-
         });
-
-        requestId = "";
     }
 
     render() {

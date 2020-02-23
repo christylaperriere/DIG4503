@@ -10,9 +10,9 @@ class NameSearch extends React.Component {
 
         // Find the element with 'id="score"'
         let element = document.querySelector("#name");
-        let requestName = element.value; 
+    
 
-        fetch('http://localhost:80/id/' + requestName)
+        fetch('http://localhost:80/name/' + element.value)
         .then((res) => {
             // Parse the string into a JavaScript object and return it
             return res.json();
@@ -31,7 +31,6 @@ class NameSearch extends React.Component {
 
         });
 
-        requestName = "";
     }
 
     render() {
