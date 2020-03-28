@@ -1,0 +1,26 @@
+.title {
+  color: #003a70;
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+
+.header {
+  color:#ffe480;
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+
+.result {
+  color: white; 
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+.link {
+  color: #2a75bb; 
+  font-family: "Arial", Gadget, sans-serif; 
+}
+
+.body {
+  background-image: url("https://i.pinimg.com/originals/1c/a6/e1/1ca6e1c35e2d884230242cc0326dbf28.jpg");
+  height: 1000px; 
+  width: 100%; 
+  padding-top: 30px; 
+  padding-left: 20px;
+}
