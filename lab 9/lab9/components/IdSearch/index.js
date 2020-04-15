@@ -1,47 +1,58 @@
+import SearchResult from "../SearchResult"; 
 import React from "react";
 import styles from '../Style.module.css'
 
-
 class IdSearch extends React.Component {
 
-    readId(event) {
+    constructor (props) {
+        super (props);
 
-        // Stop (prevent) the 'default' form action
-        event.preventDefault();
-
-        // Find the element with 'id="id"'
-
-        let element = document.querySelector("#id");
-
-        fetch('/api/pokemon/id/' + element.value).then((res) => {
-            // Parse the string into a JavaScript object and return it
-            return res.json();
-        })
-        .then((processed) => {
-            
-            // Find the element with 'id="reportingArea"'
-            let reporting = document.querySelector("#reportingArea");
-
-            // Does the 'processed' object have a property called 'error'?
-            if(processed.error) {
-                reporting.innerHTML = processed.error;
-            } else {
-                reporting.innerHTML = processed.name;
-            }
-        });
+        this.state = {
+            searchValue: "",
+            result: []
+        };
     }
 
-    render() {
-        return(
-            <div>
-                 <h2 className={styles.title}>Pokemon ID</h2>
-                 <form onSubmit={this.readId}>
-                    <input id="id" type="text" />
-                    <button>Submit</button>
-                </form>
-            </div>
+    changeHandler(value) {
+        this.setState(
+            {
+                searchValue: value
+            }
         );
     }
-}
 
+    async clickHandler() {
+
+      let searchValue = this.state.searchValue;
+
+      if(searchValue === "") {
+        searchValue = '~';
+      }
+
+      let response = await fetch('/api/pokemon/id/' + searchValue);
+      let processed = await response.json();
+      
+      this.setState({result: processed});
+    }
+    
+    render () {
+      return (
+        <div className={styles.searchBackground}>
+          <p>Search for ID</p>
+          <input
+            type="text"
+            onChange={(event) => { this.changeHandler(event.target.value); } } />
+          <button onClick={ () => { this.clickHandler() } } className={styles.navLink}>Search</button>
+          {
+              this.state.result.map((pokemon, index) => {
+                return (
+                  <SearchResult pokemon={pokemon} number={index} />
+                )
+              })
+            }
+        </div>
+      );
+    }
+}
+  
 export default IdSearch;

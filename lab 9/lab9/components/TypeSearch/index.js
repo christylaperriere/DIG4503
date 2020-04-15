@@ -1,48 +1,57 @@
-import React from "react";
+import SearchResult from '../SearchResult';
 import styles from '../Style.module.css'
-
-
 
 class TypeSearch extends React.Component {
 
-    readType(event) {
-        // Stop (prevent) the 'default' form action
-        event.preventDefault();
+    constructor (props) {
+        super (props)
 
-        // Find the element with 'id="score"'
-        let element = document.querySelector("#type");
-    
-
-        fetch('/api/pokemon/type/' + element.value)
-        .then((res) => {
-            // Parse the string into a JavaScript object and return it
-            return res.json();
-        })
-        .then((processed) => {
-            
-            // Find the element with 'id="reportingArea"'
-            let reporting = document.querySelector("#reportingArea");
-
-            // Does the 'processed' object have a property called 'error'?
-            if(processed.error) {
-                reporting.innerHTML = processed.error;
-            } else {
-                reporting.innerHTML = processed.name;
-            }
-        })
+        this.state = {
+            searchValue: "",
+            result: []
+        };
     }
 
-    render() {
-        return(
-            <div>
-                 <h2 className={styles.title}>Pokemon Type</h2>
-                 <form onSubmit={this.readType}>
-                    <input id="type" type="text" />
-                    <button>Submit</button>
-                </form>
-            </div>
-        )
+    changeHandler(value) {
+        this.setState(
+            {
+                searchValue: value
+            }
+        );
+    }
+
+    async clickHandler() {
+
+      let searchValue = this.state.searchValue;
+
+      if(searchValue === "") {
+        searchValue = '~';
+      }
+
+      let response = await fetch('/api/pokemon/type/' + searchValue);
+      let processed = await response.json();
+      
+      this.setState({result: processed});
+    }
+    
+    render () {
+      return (
+        <div className={styles.searchBackground}>
+          <p>Search for Type</p>
+          <input
+            type="text"
+            onChange={(event) => { this.changeHandler(event.target.value); } } />
+          <button onClick={ () => { this.clickHandler() } } className={styles.navLink}>Search</button>
+            {
+              this.state.result.map((pokemon, index) => {
+                return (
+                  <SearchResult pokemon={pokemon} number={index} />
+                )
+              })
+            }
+        </div>
+      );
     }
 }
-
+  
 export default TypeSearch;
