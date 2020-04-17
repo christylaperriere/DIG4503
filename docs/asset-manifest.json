@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/DIG4503/static/css/main.6d3808d4.chunk.css",
+    "main.js": "/DIG4503/static/js/main.1377ab31.chunk.js",
+    "main.js.map": "/DIG4503/static/js/main.1377ab31.chunk.js.map",
+    "runtime-main.js": "/DIG4503/static/js/runtime-main.e6eb0a6b.js",
+    "runtime-main.js.map": "/DIG4503/static/js/runtime-main.e6eb0a6b.js.map",
+    "static/js/2.42a425af.chunk.js": "/DIG4503/static/js/2.42a425af.chunk.js",
+    "static/js/2.42a425af.chunk.js.map": "/DIG4503/static/js/2.42a425af.chunk.js.map",
+    "index.html": "/DIG4503/index.html",
+    "precache-manifest.846e995a2053b547c3d72f89f1fa4e11.js": "/DIG4503/precache-manifest.846e995a2053b547c3d72f89f1fa4e11.js",
+    "service-worker.js": "/DIG4503/service-worker.js",
+    "static/css/main.6d3808d4.chunk.css.map": "/DIG4503/static/css/main.6d3808d4.chunk.css.map",
+    "static/js/2.42a425af.chunk.js.LICENSE.txt": "/DIG4503/static/js/2.42a425af.chunk.js.LICENSE.txt",
+    "static/media/VUITag.png": "/DIG4503/static/media/VUITag.dcacb3ef.png",
+    "static/media/coopsBadge.png": "/DIG4503/static/media/coopsBadge.8415acee.png",
+    "static/media/petVetBadge.png": "/DIG4503/static/media/petVetBadge.705b0310.png",
+    "static/media/portfolioBackground1.png": "/DIG4503/static/media/portfolioBackground1.1763277f.png",
+    "static/media/stcTag.png": "/DIG4503/static/media/stcTag.2a61915b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e6eb0a6b.js",
+    "static/js/2.42a425af.chunk.js",
+    "static/css/main.6d3808d4.chunk.css",
+    "static/js/main.1377ab31.chunk.js"
+  ]
+}

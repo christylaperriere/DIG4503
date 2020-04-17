@@ -39,7 +39,8 @@ class TypeSearch extends React.Component {
         <div className={styles.searchBackground}>
           <p>Search for Type</p>
           <input
-            type="text"
+            type="text"\
+            '
             onChange={(event) => { this.changeHandler(event.target.value); } } />
           <button onClick={ () => { this.clickHandler() } } className={styles.navLink}>Search</button>
             {
